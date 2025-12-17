@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>NEXUS_EXPERIMENT</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+Rounded+1c:wght@700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            transition: background 0.1s;
+        }
+
+        /* 初期状態：もわもわピンク背景 */
+        .state-initial {
+            background: radial-gradient(circle at center, #ff99cc, #ff3399, #660033);
+            background-size: 200% 200%;
+            animation: mowa-mowa 8s ease infinite;
+        }
+
+        @keyframes mowa-mowa {
+            0% { background-position: 0% 50%; filter: blur(2px); }
+            50% { background-position: 100% 50%; filter: blur(8px); }
+            100% { background-position: 0% 50%; filter: blur(2px); }
+        }
+
+        /* 変化後：虹色ちかちか背景 */
+        .state-glitch {
+            animation: chika-chika-bg 0.05s steps(1) infinite !important;
+        }
+
+        @keyframes chika-chika-bg {
+            0% { background: #ff0000; }
+            14% { background: #ff7f00; }
+            28% { background: #ffff00; }
+            42% { background: #00ff00; }
+            56% { background: #0000ff; }
+            70% { background: #4b0082; }
+            84% { background: #8b00ff; }
+            100% { background: #ff00ff; }
+        }
+
+        /* ボタン・テキストのデザイン */
+        .nexus-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            filter: blur(1px);
+            transition: transform 0.2s;
+            outline: none;
+            position: relative;
+        }
+
+        .nexus-btn:hover {
+            transform: scale(1.1);
+            filter: blur(0px);
+        }
+
+        /* ちかちかフォント */
+        .font-glitch {
+            font-size: 8rem;
+            color: #fff;
+            animation: chika-chika-text 0.08s steps(2) infinite;
+            text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+        }
+
+        @keyframes chika-chika-text {
+            0% { transform: translate(2px, -2px); opacity: 1; filter: hue-rotate(0deg); }
+            50% { transform: translate(-2px, 2px); opacity: 0.8; filter: hue-rotate(180deg); }
+            100% { transform: translate(1px, 1px); opacity: 1; filter: hue-rotate(360deg); }
+        }
+
+        /* 隠し要素 */
+        #content-next { display: none; }
+    </style>
+</head>
+<body id="main-body" class="state-initial">
+
+    <div id="content-init">
+        <button class="nexus-btn" onclick="dive()">子供でも簡単にお金を稼ぐ方法。）次へ...</button>
+    </div>
+
+    <div id="content-next">
+        <div class="font-glitch">ん///それは彼氏さんが悪いね。じゃあ、挿れるね。</div>
+    </div>
+
+    <script>
+        function dive() {
+            // 背景の切り替え
+            const body = document.getElementById('main-body');
+            body.classList.remove('state-initial');
+            body.classList.add('state-glitch');
+
+            // UIの切り替え
+            document.getElementById('content-init').style.display = 'none';
+            document.getElementById('content-next').style.display = 'block';
+
+            console.log("🖤 System: UI Migration Complete. Welcome to the Void.");
+        }
+    </script>
+</body>
+</html>
